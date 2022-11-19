@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link rel="stylesheet" href="index.css">
+  <script defer src="index.js"></script>
+  <title>Kadu Form</title>
+</head>
+
+<body>
+  <div class="container">
+    <div class="form">
+      <form action="post">
+        <div class="input-field">
+          <label for="userName">Nome completo</label>
+          <input class="input" onchange="validateUserName(event)" onmouseup="validateUserName(event)" required
+            type="text" name="username" id="username">
+          <span class="error-message"></span>
+        </div>
+        <div class="input-field">
+          <label for="email">Email</label>
+          <input class="input" onchange="validateEmail(event)" onmouseup="validateEmail(event)" required type="email"
+            name="email" id="email">
+          <span class="error-message"></span>
+        </div>
+        <div class="form-column">
+          <div class="input-field">
+            <label for="cpf">CPF</label>
+            <input class="input" required type="text" name="cpf" id="cpf">
+            <span class="error-message"></span>
+          </div>
+          <div class="input-field">
+            <label for="cellphone">Telefone com DDD</label>
+            <input class="input" type="tel" name="cellphone" id="cellphone">
+            <span class="error-message"></span>
+          </div>
+        </div>
+        <button disabled class="submit-button" type="submit">Ir para o pagamento</button>
+      </form>
+    </div>
+  </div>
+</body>
+
+</html>
