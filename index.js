@@ -104,8 +104,8 @@ function validateCpf(event) {
 
 function validateCellphone(event) {
   const value = getInputValue(event)
-  const cellphoneWithTheTraitsValidation = /^\\([0-9]{2}\\)((3[0-9]{3}-[0-9]{4})|(9[0-9]{3}-[0-9]{5}))$/
-  const cellphoneValidation = /^\\([0-9]{2}\\)((3[0-9]{7})|(9[0-9]{8}))$/
+  const cellphoneWithTheTraitsValidation = new RegExp('^\\([0-9]{2}\\)((3[0-9]{3}-[0-9]{4})|(9[0-9]{3}-[0-9]{5}))$')
+  const cellphoneValidation = new RegExp('^\\([0-9]{2}\\)((3[0-9]{7})|(9[0-9]{8}))$')
 
   if (cellphoneWithTheTraitsValidation.test(value) || cellphoneValidation.test(value)) {
     formClass.setCellphoneValid()
