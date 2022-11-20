@@ -1,11 +1,79 @@
-function validateUserName(event) {
-  const value = getInputValue(event)
-
-  if (value.lenght >= 3) {
-    removeErrorMessage(event)
+class FormClass {
+  constructor() {
+    this.usernameValid = false;
+    this.emailValid = false;
+    this.cpfValid = false;
+    this.cellphoneValid = false;
   }
-  const message = "Favor inserir o nome completo."
-  addErrorMessage(message, event)
+
+  setUsernameValid() {
+    this.usernameValid = true
+    this.allRequiredCampsFilled()
+  }
+
+  setUsernameInvalid() {
+    this.usernameValid = false
+    this.allRequiredCampsFilled()
+  }
+
+  setEmailValid() {
+    this.emailValid = true
+    this.allRequiredCampsFilled()
+  }
+
+  setEmailInvalid() {
+    this.emailValid = false
+    this.allRequiredCampsFilled()
+  }
+
+  setCpfValid() {
+    this.cpfValid = true
+    this.allRequiredCampsFilled()
+  }
+
+  setCpfnameInvalid() {
+    this.cpfValid = false
+    this.allRequiredCampsFilled()
+  }
+
+  setCellphoneValid() {
+    this.cellphoneValid = true
+    this.allRequiredCampsFilled()
+  }
+
+  setCellphoneInvalid() {
+    this.cellphoneValid = false
+    this.allRequiredCampsFilled()
+  }
+
+  allRequiredCampsFilled() {
+    const valid = (this.usernameValid &&
+      this.emailValid &&
+      this.cpfValid &&
+      this.cellphoneValid)
+
+    this.toogleSubmitButton(valid)
+  }
+
+  toogleSubmitButton(valid) {
+    const button = document.getElementById('button')
+    return button.disabled = !valid
+  }
+}
+
+var formClass = new FormClass
+
+function validateUserName(event) {
+  const value = getInputValue(event).toString()
+
+  if (value.length >= 3) {
+    formClass.setUsernameValid()
+    return removeError(event)
+  }
+
+  formClass.setUsernameInvalid()
+  const message = 'Por favor inserir o nome completo.'
+  addError(message, event)
 }
 
 function validateEmail(event) {
@@ -13,35 +81,39 @@ function validateEmail(event) {
   const emailValidation = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
 
   if (emailValidation.test(value)) {
-    removeErrorMessage(event)
+    formClass.setEmailValid()
+    return removeError(event)
   }
-
+  formClass.setEmailInvalid()
   const message = "O e-mail está inválido."
-  addErrorMessage(message, event)
+  addError(message, event)
 }
 
 function validateCpf(event) {
   const value = getInputValue(event)
-  const cpfValidation = ''
+  const cpfValidation = /^\d{3}\.\d{3}\.\d{3}\-\d{2}$/
 
   if (cpfValidation.test(value)) {
-    removeErrorMessage(event)
+    formClass.setCpfValid()
+    return removeError(event)
   }
-
-  const message = "Favor inserir o nome completo."
-  addErrorMessage(message, event)
+  formClass.setCpfnameInvalid()
+  const message = "Insira um CPF válido."
+  addError(message, event)
 }
 
 function validateCellphone(event) {
   const value = getInputValue(event)
-  const cellphoneValidation = ''
+  const cellphoneWithTheTraitsValidation = /^\\([0-9]{2}\\)((3[0-9]{3}-[0-9]{4})|(9[0-9]{3}-[0-9]{5}))$/
+  const cellphoneValidation = /^\\([0-9]{2}\\)((3[0-9]{7})|(9[0-9]{8}))$/
 
-  if (cellphoneValidation.test(value)) {
-    removeErrorMessage(event)
+  if (cellphoneWithTheTraitsValidation.test(value) || cellphoneValidation.test(value)) {
+    formClass.setCellphoneValid()
+    return removeError(event)
   }
-
-  const message = "Favor inserir o nome completo."
-  addErrorMessage(message, event)
+  formClass.setCellphoneInvalid()
+  const message = "Insira um número de telefone válido."
+  addError(message, event)
 }
 
 function getInputValue(event) {
@@ -50,15 +122,33 @@ function getInputValue(event) {
 }
 
 function addErrorMessage(message, event) {
-  const inputField = event.srcElement
-  const errorMessageField = inputField.nextElementSibling
+  const errorMessageFieldID = event.srcElement.id
+  const errorMessageField = document.getElementById(errorMessageFieldID).nextElementSibling
   errorMessageField.innerText = message
-  inputField.classList.add('input-error')
+}
+
+function addError(message, event) {
+  addErrorMessage(message, event)
+  addErrorStyle(event)
+}
+
+function removeError(event) {
+  removeErrorMessage(event)
+  removeErrorStyle(event)
 }
 
 function removeErrorMessage(event) {
-  const inputField = event.srcElement
-  const errorMessageField = inputField.nextElementSibling
-  errorMessageField.textContent = ''
-  inputField.classList.remove('input-error')
+  const errorMessageFieldID = event.srcElement.id
+  const errorMessageField = document.getElementById(errorMessageFieldID).nextElementSibling
+  errorMessageField.innerText = ""
+}
+
+function addErrorStyle(event) {
+  const inputID = event.srcElement.id
+  document.getElementById(inputID).classList.add('input-error')
+}
+
+function removeErrorStyle(event) {
+  const inputID = event.srcElement.id
+  document.getElementById(inputID).classList.remove('input-error')
 }

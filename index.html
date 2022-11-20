@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
     integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="index.css">
-  <script defer src="index.js"></script>
+  <script src="index.js"></script>
   <title>Kadu Form</title>
 </head>
 
@@ -30,19 +30,21 @@
         <div class="form-column">
           <div class="input-field">
             <label for="cpf">CPF</label>
-            <input class="input" required type="text" name="cpf" id="cpf">
+            <input class="input" onchange="validateCpf(event)" onmouseup="validateCpf(event)" required type="text" name="cpf" id="cpf">
             <span class="error-message"></span>
           </div>
           <div class="input-field">
             <label for="cellphone">Telefone com DDD</label>
-            <input class="input" type="tel" name="cellphone" id="cellphone">
+            <input class="input" onchange="validateCellphone(event)" onmouseup="validateCellphone(event)" type="tel" name="cellphone" id="cellphone">
             <span class="error-message"></span>
           </div>
         </div>
-        <button disabled class="submit-button" type="submit">Ir para o pagamento</button>
+        <button disabled id="button" class="submit-button" type="submit">Ir para o pagamento</button>
       </form>
     </div>
   </div>
+
+
 </body>
 
 </html>
