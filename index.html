@@ -15,27 +15,28 @@
   <div class="container">
     <div class="form">
       <form action="post">
-        <div class="input-field">
+        <div>
           <label for="userName">Nome completo</label>
           <input class="input" onchange="validateUserName(event)" onmouseup="validateUserName(event)" required
             type="text" name="username" id="username">
           <span class="error-message"></span>
         </div>
-        <div class="input-field">
+        <div>
           <label for="email">Email</label>
           <input class="input" onchange="validateEmail(event)" onmouseup="validateEmail(event)" required type="email"
             name="email" id="email">
           <span class="error-message"></span>
+          <span class="warning">Confirme se você digitou seu e-mail corretamente.</span>
         </div>
         <div class="form-column">
-          <div class="input-field">
+          <div class="input-field col-xs-12 col-sm-5">
             <label for="cpf">CPF</label>
             <input class="input" onchange="validateCpf(event)" onmouseup="validateCpf(event)" required type="text" name="cpf" id="cpf">
             <span class="error-message"></span>
           </div>
-          <div class="input-field">
+          <div class="input-field col-xs-12 col-sm-5">
             <label for="cellphone">Telefone com DDD</label>
-            <input class="input" onchange="validateCellphone(event)" onmouseup="validateCellphone(event)" type="tel" name="cellphone" id="cellphone">
+            <input placeholder="(xx)xxxxxxxxx" class="input" onchange="validateCellphone(event)" onmouseup="validateCellphone(event)" type="tel" name="cellphone" id="cellphone">
             <span class="error-message"></span>
           </div>
         </div>

@@ -4,24 +4,30 @@ body{
   font: normal 14px Arial;
   background-color: #f9fbfd;
   height: 100vh;
+  color: #a2b0b8;
 }
 
 input{
-  padding: 2%;
+  padding: 15px;
   outline-width: 1px;
   border: 1px solid #dde4e8;
+  color: #a2b0b8;
 }
 
 label{
   text-transform: uppercase;
-  color: #a2b0b8;
   font-weight: 600;
   font-size: .7em;
-
 }
 
 #username, #email{
   width: 100%;
+}
+
+.warning{
+  text-transform: uppercase;
+  font-weight: 600;
+  font-size: .7em;
 }
 
 .form{
@@ -51,12 +57,13 @@ label{
   justify-content: space-between;
   gap: 10%;
   flex-wrap: wrap;
+  margin: 7px 0 15px 0;
 }
 
 .input-field{
   display: flex;
   flex-direction: column;
-  margin-bottom: 15px;
+  padding: 0px;
   width: 100%;
 }
 
